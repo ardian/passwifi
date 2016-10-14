@@ -2,16 +2,25 @@ fs = require('fs')
 glob = require('glob')
 
 // password locations fedora 24
-data = '/etc/sysconfig/network-scripts/keys*';
+passwords = '/etc/sysconfig/network-scripts/keys*';
+ssid = '/etc/sysconfig/network-scripts/ifcfg*';
+
+glob(ssid, function(er, fiiles){
+  
+  var reg = /fcfg-(.*?)*/g;
+  var fin = String(fiiles).match(reg);
+
+  console.log(fin);
+});
 
 // read dir
-glob(data, function(er, files) {
+glob(passwords, function(er, files) {
   
   // loop over passwords
   for (var i in files) {
 
   	// read each password
-    fs.readFile(files[i], 'utf8', function(err, data) {
+    fs.readFile(files[i], 'utf8', function(err, passwords) {
       if (err) {
         return console.log(err);
       }
@@ -19,7 +28,7 @@ glob(data, function(er, files) {
       // regex for password
       var reg = /'(.*?)'/g;
 
-      var fin = data.match(reg);
+      var fin = passwords.match(reg);
       console.log(String(fin));
 
 
