@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 fs = require('fs')
 glob = require('glob')
 

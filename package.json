@@ -1,8 +1,11 @@
 {
   "name": "passwifi",
-  "version": "1.0.0",
-  "description": "Connect to wifi networks, using a password db.",
-  "main": "app.js",
+  "version": "1.0.1",
+  "description": "Get all saved Wifi passwords on Fedora.",
+  "main": "passwifi.js",
+  "bin": {
+    "passwifi": "passwifi.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,7 +18,7 @@
     "password",
     "list"
   ],
-  "author": "Ardian Haxha",
+  "author": "Ardian Haxha <ardian@brainpress.org> (http://brainpress.org)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ardian/passwifi/issues"
