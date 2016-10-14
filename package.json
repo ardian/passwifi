@@ -1,0 +1,27 @@
+{
+  "name": "passwifi",
+  "version": "1.0.0",
+  "description": "Connect to wifi networks, using a password db.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ardian/passwifi.git"
+  },
+  "keywords": [
+    "wifi",
+    "password",
+    "list"
+  ],
+  "author": "Ardian Haxha",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ardian/passwifi/issues"
+  },
+  "homepage": "https://github.com/ardian/passwifi#readme",
+  "dependencies": {
+    "glob": "^7.1.1"
+  }
+}
