@@ -1,7 +1,7 @@
 {
   "name": "passwifi",
-  "version": "1.0.1",
-  "description": "Get all saved Wifi passwords on Fedora.",
+  "version": "1.0.2",
+  "description": "Print all saved Wifi passwords on Fedora.",
   "main": "passwifi.js",
   "bin": {
     "passwifi": "passwifi.js"
