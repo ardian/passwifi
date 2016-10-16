@@ -1,29 +1,35 @@
 #!/usr/bin/env node
-fs = require('fs')
-glob = require('glob')
+var fs = require('fs');
+var glob = require('glob');
 
 // password locations fedora 24
-passwords = '/etc/sysconfig/network-scripts/keys*';
-// read dir
-glob(passwords, function(er, files) {
-  
-  // loop over passwords
-  for (var i in files) {
+var passwords = '/etc/sysconfig/network-scripts/keys*';
 
-  	// read each password
-    fs.readFile(files[i], 'utf8', function(err, passwords) {
-      if (err) {
-        return console.log(err);
-      }
-
-      // regex for password
-      var reg = /'(.*?)'/g;
-
-      var fin = passwords.match(reg);
-      console.log(String(fin).replace(/[']+/g, ''));
+// password locations Ubuntu
+//var ubuntupasswd = '/etc/NetworkManager/system-connections/Prishtina Hackerspace 2';
 
 
-    })
+function getpass(passwords){
+  // read dir
+  glob(passwords, function(er, files) {
 
-  }
-});
+    // loop over passwords
+    for (var i in files) {
+
+    	// read each password
+      fs.readFile(files[i], 'utf8', function(err, passwords) {
+        if (err) {
+          return console.log(err);
+        }
+
+        // regex for password
+        var reg = /'(.*?)'/g;
+
+        var fin = passwords.match(reg);
+        console.log(String(fin).replace(/[']+/g, ''));
+      })
+    }
+  });
+}
+
+getpass(passwords);
