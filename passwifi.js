@@ -8,7 +8,7 @@ var passwords = '/etc/sysconfig/network-scripts/keys*';
 
 
 // password locations Ubuntu
-//var ubuntupasswd = '/etc/NetworkManager/system-connections/Prishtina Hackerspace 2';
+var ubuntupasswd = '/etc/NetworkManager/system-connections/Prishtina Hackerspace 2';
 
 
 function getpass(passwords){
@@ -20,7 +20,7 @@ function getpass(passwords){
   glob(passwords, function(er, files) {
     if (files.length > 0){
 
-      // loop over passwords
+      // looppasswordspasswords over passwords
       for (var i in files) {
 
       	// read each password
@@ -38,11 +38,33 @@ function getpass(passwords){
       }
 } else {
 
-  console.log("no data");
+
+
+
 }
 
   });
+  console.log("no data");
 
+  glob(ubuntupasswd, function(er, files){
+    for (var i in files) {
+
+      // read each password
+      fs.readFile(files[i], 'utf8', function(err, ubuntupasswd) {
+        if (err) {
+          return console.log(err);
+        }
+
+        // regex for password
+        var reg = /\spsk=(.*)/g;
+
+        var fin = ubuntupasswd.match(reg);
+        console.log(String(fin).replace(/[']+/g, ''));
+        //console.log(ubuntupasswd);
+      })
+    }
+
+  })
 
 
 
