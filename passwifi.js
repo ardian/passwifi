@@ -15,12 +15,8 @@ function readPassword (passwords) {
   var data = glob.sync(passwords)
   // go over each file, and print the filename + the password
   for (var i in data) {
-    // console.log(data[i])
     var fin = fs.readFileSync(data[i], 'utf8')
     process.stdout.write('Wi-Fi Name: ' + clc.greenBright(data[i].match(/([A-Z])\w+/g).toString()) + ' Password: ' + clc.greenBright(fin))
-
-    // var myHash = {[data[i]]: fin.match(/[']+/g, 'ardian')}
-    // console.log(myHash)
   }
 }
 
