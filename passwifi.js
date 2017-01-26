@@ -1,37 +1,27 @@
 #!/usr/bin/env node
+
 var fs = require('fs')
 var glob = require('glob')
+var clc = require('cli-color')
 
-// password locations fedora 24
-var passwords = '/etc/sysconfig/network-scripts/keys*'
+// Location for Wi-Fi passwords on Fedora
+var fedoraPasswords = '/etc/sysconfig/network-scripts/keys*'
 
-// password locations Ubuntu
-//var ubuntupasswd = '/etc/NetworkManager/system-connections/Prishtina Hackerspace 2'
+// Location for Wi-Fi passwords on Ubuntu
+// var ubuntupasswd = '/etc/NetworkManager/system-connections/Prishtina Hackerspace 2'
 
-function getpass (passwords) {
-  // - NOT WORKING ATM - Check if Ubuntu or fedora
+function readPassword (passwords) {
+  // put all password files in an array
+  var data = glob.sync(passwords)
+  // go over each file, and print the filename + the password
+  for (var i in data) {
+    // console.log(data[i])
+    var fin = fs.readFileSync(data[i], 'utf8')
+    process.stdout.write('Wi-Fi Name: ' + clc.greenBright(data[i].match(/([A-Z])\w+/g).toString()) + ' Password: ' + clc.greenBright(fin))
 
-  // read dir
-
-  glob(passwords, function (er, files) {
-    if (files.length > 0) {
-      // looppasswordspasswords over passwords
-      for (var i in files) {
-      	// read each password
-        fs.readFile(files[i], 'utf8', function (err, passwords) {
-          if (err) {
-            return console.log(err)
-          }
-
-          // regex for password
-          var reg = /'(.*?)'/g
-
-          var fin = passwords.match(reg)
-          console.log(String(fin).replace(/[']+/g, ''))
-        })
-      }
-    }
-  })
+    // var myHash = {[data[i]]: fin.match(/[']+/g, 'ardian')}
+    // console.log(myHash)
+  }
 }
 
-getpass(passwords)
+readPassword(fedoraPasswords)
