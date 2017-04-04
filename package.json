@@ -26,6 +26,7 @@
   "homepage": "https://github.com/ardian/passwifi#readme",
   "dependencies": {
     "cli-color": "^1.1.0",
+    "getos": "^2.8.4",
     "glob": "^7.1.1"
   }
 }
